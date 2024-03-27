@@ -14,6 +14,6 @@
 
 ### Platform choice
 
-# Schedule 
+### Schedule 
 
 
