@@ -1,18 +1,18 @@
 # 15618_project.github.io
 
-## Title :
+### Title :
 
-## URL :
+### URL :
 
-## Summary
+### Summary
 
-# Background
+### Background
 
-# Resources
+### Resources
 
-# Goals and Deiverables
+### Goals and Deiverables
 
-# Platform choice
+### Platform choice
 
 # Schedule 
 
