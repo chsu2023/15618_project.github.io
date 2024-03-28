@@ -48,14 +48,14 @@ directory based.
 * Ablation study of various tuneable parameters such as cache sizes, pro-
 cessor count.
 * Performance of the protocol under trace-driven workloads.
-### Platform choice
+## Platform choice
 * The main developing environment will be on GHC machine; however, we
 might use PSC machine to do some in-depth analysis.
 * We will build our design on top of the cache framework that Professor
 Railing provided.
 * We will us C++ as our programming language for the design.
 * If we have extra time, we will build our design on top of gem5 simulator.
-### Schedule 
+## Schedule 
 | Week   | Tasks |
 |--------|-------|
 | Week 1 | Study the paper of cache optimization using POPS and study the cache simulator provided by professors |
