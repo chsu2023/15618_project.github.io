@@ -5,30 +5,54 @@
 #### URL :
 
 ## Summary
-We propose an optimization for cache coherence protocol for private and shared data inspired from POPS [1]. The optimization aims to delegate meta-data storage to only one of the caches (either L1 or L2), hence increasing effective cache capacity. We aim to utilize trace files to analyze the performance the proposed optimization and provide insightful metrics regarding performance and utilization.
+We propose an optimization for cache coherence protocol for private and shared data inspired by POPS [1]. The optimization aims to delegate meta-data storage to only one of the caches (either L1 or L2), hence increasing effective cache capacity. We aim to utilize trace files to analyze the performance the proposed optimization and provide insightful metrics regarding performance and utilization.
 ## Background
-Chip multiprocessors tend to organize their caches in an increasing order of sizes,
+Chip multiprocessors tend to organize their caches in increasing order of sizes,
 with L1 − Li caches being private to a processor and Li+1 being shared by all
-the processors. This arrangement reduces the latency to access DRAM or lower
-level memory but requires significant work to keep the caches in the correct
+the processors. This arrangement reduces the latency to access DRAM or lower-level memory but requires significant work to keep the caches in the correct
 state when multiple processors access a common resource. Cache coherence is
 critical to maintain the correctness of the program and to allow the user to
 carefully orchestrate their programs to produce an expected result. Popular
 cache coherence protocols like MESIF and MOESI are based on snooping and
 require the processor to actively listen to the messages on the interconnect, on
-the other hand directory based protocols need to store additional information
+the other hand, directory-based protocols need to store additional information
 about the processors with whom they are sharing memory locations. We propose
-an optimization that is inspired from POPS [1] too.
-## Resources
-* Understanding the POPs protocol presented on the paper.
-* Understanding the cache framework provided by Professor Railing becasue
+an optimization that is inspired by POPS [1] too.
+## The Challenges
+* Understanding the POPs protocol presented in the paper.
+1
+* Understanding the cache framework provided by Professor Railing because
 we are making modifications on top of it to implement our design.
 * The complexity of implementing the POPs protocol since we need to add
 some hardware components, such as bloom filters and predictor tables, to
 the existing cache architecture.
 * Performance and analysis on the optimized cache and base cache.
-## Goals and Deiverables
-
+## Resources
+* Understanding the POPs protocol presented in the paper.
+* Understanding the cache framework provided by Professor Railing because
+we are making modifications on top of it to implement our design.
+* The complexity of implementing the POPs protocol since we need to add
+some hardware components, such as bloom filters and predictor tables, to
+the existing cache architecture.
+* Performance and analysis on the optimized cache and base cache.
+## Goals and Deliverables
+### 5.1 Plan to Achieve
+* Simulate the POPS inspired protocol on a simulator (preferably from 15-
+346) for multiprocessor NUMA caches (private L1 and shared L2).
+* The simulator will provide the user with the functionality to set cache
+parameters and processor count.
+* The simulator will provide the ability to profile the proposed system
+against MESIF and MOESI protocols and showcase relevant metrics like
+cache hits/misses, latency and interconnect traffic load.
+### 5.2 Hope to Achieve
+* Profile the proposed protocol against other coherence protocols such as
+directory based.
+* The simulator will provide the ability to use a different interconnect.
+### 5.3 Deliverables
+* Analysis of MESIF/MOESI protocols against the proposed protocol.
+* Ablation study of various tuneable parameters such as cache sizes, pro-
+cessor count.
+* Performance of the protocol under trace-driven workloads.
 ### Platform choice
 
 ### Schedule 
