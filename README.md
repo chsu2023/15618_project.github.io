@@ -37,8 +37,7 @@ the existing cache architecture.
 * Performance and analysis on the optimized cache and base cache.
 ## Goals and Deliverables
 ### 5.1 Plan to Achieve
-* Simulate the POPS inspired protocol on a simulator (preferably from 15-
-346) for multiprocessor NUMA caches (private L1 and shared L2).
+* Simulate the POPS-inspired protocol on a simulator (preferably from 15-346) for multiprocessor NUMA caches (private L1 and shared L2).
 * The simulator will provide the user with the functionality to set cache
 parameters and processor count.
 * The simulator will provide the ability to profile the proposed system
@@ -54,7 +53,19 @@ directory based.
 cessor count.
 * Performance of the protocol under trace-driven workloads.
 ### Platform choice
-
+* The main developing environment will be on GHC machine; however, we
+might use PSC machine to do some in-depth analysis.
+* We will build our design on top of the cache framework that Professor
+Railing provided.
+* We will us C++ as our programming language for the design.
+* If we have extra time, we will build our design on top of gem5 simulator.
 ### Schedule 
+| Week   | Tasks |
+|--------|-------|
+| Week 1 | Study the paper of cache optimization using POPS and study the cache simulator provided by professors |
+| Week 2 | Start implementing our design |
+| Week 3 | Finish implementation and verification on our design |
+| Week 4 | Perform analysis and gather data for both our optimized design and base design |
+| Week 5 | Work on the report and potentially scale our design from the simulator the professor provided to gem5 |
 
 
