@@ -1,4 +1,4 @@
-# 15618_project
+# 15618_project - Cahce Optimizations using POPs Protocol
 
 ## Summary
 We propose an optimization for cache coherence protocol for private and shared data inspired by POPS [1]. The optimization aims to delegate meta-data storage to only one of the caches (either L1 or L2), hence increasing effective cache capacity. We aim to utilize trace files to analyze the performance the proposed optimization and provide insightful metrics regarding performance and utilization.
