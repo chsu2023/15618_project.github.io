@@ -20,13 +20,13 @@ the other hand directory based protocols need to store additional information
 about the processors with whom they are sharing memory locations. We propose
 an optimization that is inspired from POPS [1] too.
 ## Resources
-• Understanding the POPs protocol presented on the paper.
-• Understanding the cache framework provided by Professor Railing becasue
+* Understanding the POPs protocol presented on the paper.
+* Understanding the cache framework provided by Professor Railing becasue
 we are making modifications on top of it to implement our design.
-• The complexity of implementing the POPs protocol since we need to add
+* The complexity of implementing the POPs protocol since we need to add
 some hardware components, such as bloom filters and predictor tables, to
 the existing cache architecture.
-• Performance and analysis on the optimized cache and base cache.
+* Performance and analysis on the optimized cache and base cache.
 ## Goals and Deiverables
 
 ### Platform choice
