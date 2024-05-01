@@ -1,0 +1,8 @@
+# object directory
+obj/
+
+# Ignore the .DS_Store file
+.DS_Store
+
+# executable
+*.exe
