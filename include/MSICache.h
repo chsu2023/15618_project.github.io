@@ -35,9 +35,15 @@ public:
     bool IsPresent(int64_t address);
 
     /* Send an invalidation request to the cache and return true if the line was invalidated */
-    bool Invalidate(int64_t address);
+    void Invalidate(int64_t address);
 
     void Update(int64_t address, bool M, bool S, bool V);
+
+    bool IsModified(int64_t address);
+
+    void Load(int64_t address);
+
+    void Store(int64_t address);
 
 private:
     std::vector<std::vector<MSICacheLine>> cache_;
