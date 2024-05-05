@@ -9,9 +9,9 @@ public:
 
     virtual void Init() = 0;
 
-    virtual bool IsPresent(int64_t source) = 0;
+    virtual bool IsPresent(uint64_t source) = 0;
 
-    virtual void Invalidate(int64_t address) = 0;
+    virtual void Invalidate(uint64_t address) = 0;
 
 };
 

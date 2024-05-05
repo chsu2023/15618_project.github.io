@@ -3,7 +3,7 @@
 void MESIFCache::Init() {
 
 }
-bool MESIFCache::IsPresent(int64_t address) {
+bool MESIFCache::IsPresent(uint64_t address) {
     // Extract the set for the address address
     int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
     int address_tag = (address >> (b_ + s_));
@@ -19,7 +19,7 @@ bool MESIFCache::IsPresent(int64_t address) {
     return false;
 }
 
-void MESIFCache::Update(int64_t address, bool M, bool E, bool S, bool V, bool F) {
+void MESIFCache::Update(uint64_t address, bool M, bool E, bool S, bool V, bool F) {
     int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
     int address_tag = (address >> (b_ + s_));
 
@@ -35,10 +35,9 @@ void MESIFCache::Update(int64_t address, bool M, bool E, bool S, bool V, bool F)
             return;
         }
     }
-
 }
 
-void MESIFCache::Invalidate(int64_t address) {
+void MESIFCache::Invalidate(uint64_t address) {
     int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
     int address_tag = (address >> (b_ + s_));
 
@@ -50,7 +49,7 @@ void MESIFCache::Invalidate(int64_t address) {
     }
 }
 
-bool MESIFCache::IsModified(int64_t address) {
+bool MESIFCache::IsModified(uint64_t address) {
     int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
     int address_tag = (address >> (b_ + s_));
     auto cache_lines = cache_[address_set];
@@ -63,7 +62,7 @@ bool MESIFCache::IsModified(int64_t address) {
     return false;
 }
 
-bool MESIFCache::IsExclusive(int64_t address) {
+bool MESIFCache::IsExclusive(uint64_t address) {
     int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
     int address_tag = (address >> (b_ + s_));
     auto cache_lines = cache_[address_set];
@@ -76,7 +75,7 @@ bool MESIFCache::IsExclusive(int64_t address) {
     return false;
 }
 
-bool MESIFCache::IsForward(int64_t address) {
+bool MESIFCache::IsForward(uint64_t address) {
     int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
     int address_tag = (address >> (b_ + s_));
     auto cache_lines = cache_[address_set];
@@ -89,7 +88,7 @@ bool MESIFCache::IsForward(int64_t address) {
     return false;
 }
 
-void MESIFCache::Load(int64_t address) {
+void MESIFCache::Load(uint64_t address) {
     int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
     int address_tag = (address >> (b_ + s_));
     auto cache_lines = cache_[address_set];
@@ -139,7 +138,7 @@ void MESIFCache::Load(int64_t address) {
     }
 }
 
-void MESIFCache::Store(int64_t address) {
+void MESIFCache::Store(uint64_t address) {
     int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
     int address_tag = (address >> (b_ + s_));
     auto cache_lines = cache_[address_set];
@@ -188,7 +187,7 @@ void MESIFCache::Store(int64_t address) {
 }
 
 
-// void MESIFCache::BusRD_Response(int64_t address) {
+// void MESIFCache::BusRD_Response(uint64_t address) {
 //     int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
 //     int address_tag = (address >> (b_ + s_));
 //     auto cache_lines = cache_[address_set];

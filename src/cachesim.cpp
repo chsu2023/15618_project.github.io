@@ -6,6 +6,7 @@
 #include "Executor.h"
 #include "MSICoherence.h"
 #include "MESIFCoherence.h"
+#include "POPSCoherence.h"
 
 namespace fs = std::filesystem;
 
@@ -30,12 +31,13 @@ int main(int argc, char * argv[]) {
     Executor exec(entries, argv[1]);
     exec.Init();
 
-    int64_t processor_id;
+    uint64_t processor_id;
     char action;
-    int64_t address;
+    uint64_t address;
 
     //MSICoherence controller(4, 256, 4, 1, 6, 6);
-    MESIFCoherence controller(4, 256, 4, 1, 6, 6);
+    //MESIFCoherence controller(4, 256, 4, 1, 6, 6);
+    POPSCoherence controller(4, 256, 4, 1, 6, 6);
 
     while(exec.Next(processor_id, action, address)) {
         if(action == 'L') {

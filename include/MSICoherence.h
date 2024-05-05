@@ -16,7 +16,7 @@ and a common L2 cache
 
 class MSICoherence {
 public:
-    explicit MSICoherence(int num_processors, int64_t num_lines, int64_t L1s, int64_t L2s, int64_t b, int64_t E):
+    explicit MSICoherence(int num_processors, uint64_t num_lines, uint64_t L1s, uint64_t L2s, uint64_t b, uint64_t E):
     num_lines_(num_lines), L1s_(L1s), L2s_(L1s), E_(E), b_(b) {
         
         for(int i = 0; i < num_processors; i++) {
@@ -30,24 +30,24 @@ public:
         cost_ = 0;
     }
 
-    void Load(int64_t address, int64_t processor_id);
+    void Load(uint64_t address, uint64_t processor_id);
 
-    void Store(int64_t address, int64_t processor_id);
+    void Store(uint64_t address, uint64_t processor_id);
 
-    int64_t GetCost();
+    uint64_t GetCost();
 
 private:
 // 0 to (num_processors - 1) : L1
 // (num_processors) : L2
 std::vector<MSICache> caches_; // Vector of L1 caches
 std::vector<MSICache> L2_cache_;
-int64_t num_processors_; // No. of processors
-int64_t num_lines_; // No. of lines in the L1 cache
-int64_t L1s_; // No. of L1s same as the number of processors
-int64_t L2s_; // Common L2 cache for all the processors
-int64_t E_; // Set size for the cache
-int64_t b_; // Block size for the cache
-int64_t cost_; // cost for fetching from L1 or L2
+uint64_t num_processors_; // No. of processors
+uint64_t num_lines_; // No. of lines in the L1 cache
+uint64_t L1s_; // No. of L1s same as the number of processors
+uint64_t L2s_; // Common L2 cache for all the processors
+uint64_t E_; // Set size for the cache
+uint64_t b_; // Block size for the cache
+uint64_t cost_; // cost for fetching from L1 or L2
 };
 
 #endif // MSI_COHERENCE_H

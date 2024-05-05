@@ -20,7 +20,7 @@ TARGET = cachesim
 
 # Default rule to build the executable
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 # Rule to compile each source file into object files
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp

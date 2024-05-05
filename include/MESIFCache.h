@@ -14,17 +14,17 @@ public:
     bool S;
     bool V;
     bool F;
-    int64_t tag;
+    uint64_t tag;
     std::chrono::system_clock::time_point last_accessed;
 
 };
 
 class MESIFCache : CacheBase {
 public:
-    explicit MESIFCache(int num_lines, int64_t E, int64_t s, int64_t b): 
+    explicit MESIFCache(int num_lines, uint64_t E, uint64_t s, uint64_t b): 
     num_lines_(num_lines), s_(s),  b_(b),  E_(E) {
         cache_.resize(num_lines);
-        for(int64_t i = 0; i < num_lines; i++) {
+        for(uint64_t i = 0; i < num_lines; i++) {
             cache_[i] = std::vector<MESIFCacheLine>(E);
         }
         lines_used_ = 0;
@@ -34,22 +34,22 @@ public:
     void Init();
 
     /* Check if the address is present in the cache */
-    bool IsPresent(int64_t address);
+    bool IsPresent(uint64_t address);
 
     /* Send an invalidation request to the cache and return true if the line was invalidated */
-    void Invalidate(int64_t address);
+    void Invalidate(uint64_t address);
 
-    void Update(int64_t address, bool M, bool E, bool S, bool V, bool F);
+    void Update(uint64_t address, bool M, bool E, bool S, bool V, bool F);
 
-    bool IsModified(int64_t address);
+    bool IsModified(uint64_t address);
 
-    void Load(int64_t address);
+    void Load(uint64_t address);
 
-    void Store(int64_t address);
+    void Store(uint64_t address);
 
-    bool IsExclusive(int64_t address);
+    bool IsExclusive(uint64_t address);
 
-    bool IsForward(int64_t address);
+    bool IsForward(uint64_t address);
 
 
 private:

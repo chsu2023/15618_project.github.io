@@ -1,6 +1,6 @@
 #include "MSICoherence.h"
 
-void MSICoherence::Load(int64_t processor_id, int64_t address) {
+void MSICoherence::Load(uint64_t processor_id, uint64_t address) {
 
     // Check for presence in the local cache
     if(caches_[processor_id].IsPresent(address)) {
@@ -12,7 +12,7 @@ void MSICoherence::Load(int64_t processor_id, int64_t address) {
     
     // Check for presence in other L1 caches
     bool found_in_other_L1 = false;
-    for(int64_t i = 0; i < num_processors_; i++) {
+    for(uint64_t i = 0; i < num_processors_; i++) {
         if(i != processor_id && caches_[i].IsPresent(address)) {
             found_in_other_L1 = true;
             // Check the state
@@ -46,7 +46,7 @@ void MSICoherence::Load(int64_t processor_id, int64_t address) {
     cost_ += DRAM_FETCH;
 }
 
-void MSICoherence::Store(int64_t processor_id, int64_t address) {
+void MSICoherence::Store(uint64_t processor_id, uint64_t address) {
 
     // Check for presence in local L1
     // If the cache line is shared, invalidate all cache lines in L1 and L2
@@ -57,7 +57,7 @@ void MSICoherence::Store(int64_t processor_id, int64_t address) {
         bool invalidate_other_L1 = false;
 
         // Check for presence in the local cache
-        for (int64_t i = 0; i < num_processors_; ++i) {
+        for (uint64_t i = 0; i < num_processors_; ++i) {
             if (i != processor_id && caches_[i].IsPresent(address)) {
                 caches_[i].Invalidate(address); // Invalidate in L1
                 invalidate_other_L1 = true;
@@ -76,7 +76,7 @@ void MSICoherence::Store(int64_t processor_id, int64_t address) {
         return;
     } else {
         // Check for presence in other L1 caches and invalidate them
-        for (int64_t i = 0; i < num_processors_; ++i) {
+        for (uint64_t i = 0; i < num_processors_; ++i) {
             if (i != processor_id && caches_[i].IsPresent(address)) {
                 caches_[i].Invalidate(address); // Invalidate in L1
             }
@@ -96,6 +96,6 @@ void MSICoherence::Store(int64_t processor_id, int64_t address) {
     cost_ += DRAM_FETCH;
 }
 
-int64_t MSICoherence::GetCost() {
+uint64_t MSICoherence::GetCost() {
     return cost_;
 }

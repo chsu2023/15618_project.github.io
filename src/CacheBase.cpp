@@ -4,10 +4,10 @@
 void CacheBase::Init() {
 }
 
-bool CacheBase::IsPresent(int64_t source) {
+bool CacheBase::IsPresent(uint64_t source) {
     return false;
 }
 
-void CacheBase::Invalidate(int64_t address) {
+void CacheBase::Invalidate(uint64_t address) {
     return;
 }

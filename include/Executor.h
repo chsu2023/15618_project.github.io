@@ -34,7 +34,7 @@ public:
         }
     }
 
-    bool Next(int64_t &processor_id, char &action, int64_t &address) {
+    bool Next(uint64_t &processor_id, char &action, uint64_t &address) {
         // Have exhausted all the trace file for all the processors
         if(finished_ == entries_.size()) {
             return false;
@@ -82,7 +82,7 @@ private:
 
     void parse(std::string &next_instruction, std::vector<std::string> &v) {
         v[0] = next_instruction[0];
-        int64_t comma_index = next_instruction.find(',');
+        uint64_t comma_index = next_instruction.find(',');
         v[1] = next_instruction.substr(2, comma_index - 2);
         v[2] = next_instruction.substr(comma_index + 1);
     }

@@ -1,12 +1,11 @@
-#include "MSICache.h"
-#include <iostream>
+#include "POPSCache.h"
 
-void MSICache::Init() {
+void POPSCache::Init() {
 
 }
 
-bool MSICache::IsPresent(uint64_t address) {
-    // Extract the set for the address
+bool POPSCache::IsPresent(uint64_t address) {
+    // Extract the set for the address address
     int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
     int address_tag = (address >> (b_ + s_));
 
@@ -21,7 +20,7 @@ bool MSICache::IsPresent(uint64_t address) {
     return false;
 }
 
-void MSICache::Update(uint64_t address, bool M, bool S, bool V) {
+void POPSCache::Update(uint64_t address, bool M, bool E, bool S, bool V) {
     int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
     int address_tag = (address >> (b_ + s_));
 
@@ -32,13 +31,13 @@ void MSICache::Update(uint64_t address, bool M, bool S, bool V) {
             cache_line.M = M;
             cache_line.S = S;
             cache_line.V = V;
+            cache_line.E = E;
             return;
         }
     }
-
 }
 
-void MSICache::Invalidate(uint64_t address) {
+void POPSCache::Invalidate(uint64_t address) {
     int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
     int address_tag = (address >> (b_ + s_));
 
@@ -50,7 +49,7 @@ void MSICache::Invalidate(uint64_t address) {
     }
 }
 
-bool MSICache::IsModified(uint64_t address) {
+bool POPSCache::IsModified(uint64_t address) {
     int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
     int address_tag = (address >> (b_ + s_));
     auto cache_lines = cache_[address_set];
@@ -64,7 +63,7 @@ bool MSICache::IsModified(uint64_t address) {
 }
 
 
-void MSICache::Load(uint64_t address) {
+void POPSCache::Load(uint64_t address) {
     int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
     int address_tag = (address >> (b_ + s_));
     auto cache_lines = cache_[address_set];
@@ -79,13 +78,12 @@ void MSICache::Load(uint64_t address) {
                 cache_line.M = false;
             }
             cache_line.last_accessed = std::chrono::system_clock::now();
-
             return;
         }
     }
 
     //I->S
-    MSICacheLine new_line;
+    POPSCacheLine new_line;
     new_line.tag = address_tag;
     new_line.V = true;
     new_line.S = true;
@@ -110,7 +108,20 @@ void MSICache::Load(uint64_t address) {
     cache_[address_set][min_index] = new_line;
 }
 
-void MSICache::Store(uint64_t address) {
+bool POPSCache::IsExclusive(uint64_t address) {
+    int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
+    int address_tag = (address >> (b_ + s_));
+    auto cache_lines = cache_[address_set];
+
+    for(auto & cache_line : cache_lines) {
+        if(cache_line.tag == address_tag) {
+            return cache_line.E;
+        }
+    }
+    return false;
+}
+
+void POPSCache::Store(uint64_t address) {
     int address_set = (address >> b_) & ((1 << (s_ + 1)) - 1);
     int address_tag = (address >> (b_ + s_));
     auto cache_lines = cache_[address_set];
@@ -128,7 +139,7 @@ void MSICache::Store(uint64_t address) {
     }
 
     //X->M
-    MSICacheLine new_line;
+    POPSCacheLine new_line;
     new_line.tag = address_tag;
     new_line.V = true;
     new_line.S = false;
