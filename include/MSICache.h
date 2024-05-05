@@ -25,7 +25,6 @@ public:
         for(int64_t i = 0; i < num_lines; i++) {
             cache_[i] = std::vector<MSICacheLine>(E);
         }
-        lines_used_ = 0;
     }
 
     /* MSI cache does not require initialization */
@@ -48,7 +47,6 @@ public:
 private:
     std::vector<std::vector<MSICacheLine>> cache_;
     int num_lines_;
-    int lines_used_;
     int s_;
     int b_;
     int E_;

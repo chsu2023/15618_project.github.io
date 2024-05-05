@@ -5,6 +5,7 @@
 
 #include "Executor.h"
 #include "MSICoherence.h"
+#include "MESIFCoherence.h"
 
 namespace fs = std::filesystem;
 
@@ -20,7 +21,6 @@ int main(int argc, char * argv[]) {
     if (fs::exists(traces_directory) && fs::is_directory(traces_directory)) {
         // Iterate over the files in the directory
         for (const auto& entry : fs::directory_iterator(traces_directory)) {
-            // Print the filename
             entries.push_back(entry);
         }
     } else {
@@ -34,14 +34,15 @@ int main(int argc, char * argv[]) {
     char action;
     int64_t address;
 
-    MSICoherence controller(4, 256, 4, 1, 6, 6);
+    //MSICoherence controller(4, 256, 4, 1, 6, 6);
+    MESIFCoherence controller(4, 256, 4, 1, 6, 6);
 
     while(exec.Next(processor_id, action, address)) {
         if(action == 'L') {
-            std::cout << "Loading address " << std::hex << address << " on processor " << processor_id << std::endl;
+            //std::cout << "Loading address 0x" << std::hex << address << " on processor " << processor_id << std::endl;
             controller.Load(processor_id, address);
         } else {
-            std::cout << "Storing address " << std::hex << address << " on processor " << processor_id << std::endl;
+            //std::cout << "Storing address 0x" << std::hex << address << " on processor " << processor_id << std::endl;
             controller.Store(processor_id, address);
         }
     }

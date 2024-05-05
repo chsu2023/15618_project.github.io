@@ -8,6 +8,6 @@ bool CacheBase::IsPresent(int64_t source) {
     return false;
 }
 
-bool CacheBase::Invalidate(int64_t address) {
-    return false;
+void CacheBase::Invalidate(int64_t address) {
+    return;
 }

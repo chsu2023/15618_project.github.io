@@ -24,15 +24,15 @@ public:
         }
 
         // Create an L2 cache
-        caches_.emplace_back(num_lines * 4, E, L2s, b);
+        L2_cache_.emplace_back(num_lines * 4, E, L2s, b);
 
         // Initialize cost
         cost_ = 0;
     }
 
-    void Load(int64_t address, int64_t processor_id);
+    void Load(int64_t processor_id, int64_t address);
 
-    void Store(int64_t address, int64_t processor_id);
+    void Store(int64_t processor_id, int64_t address);
 
     int64_t GetCost();
 
@@ -40,6 +40,7 @@ private:
 // 0 to (num_processors - 1) : L1
 // (num_processors) : L2
 std::vector<MESIFCache> caches_;
+std::vector<MESIFCache> L2_cache_;
 int64_t num_processors_; // No. of processors
 int64_t num_lines_; // No. of lines in the L1 cache
 int64_t L1s_; // No. of L1s same as the number of processors

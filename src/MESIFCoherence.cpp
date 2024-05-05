@@ -1,11 +1,22 @@
 #include "MESIFCoherence.h"
 
-void MESIFCoherence::Load(int64_t address, int64_t processor_id) {
+void MESIFCoherence::Load(int64_t processor_id, int64_t address) {
 
     // Check for presence in the local cache
     if(caches_[processor_id].IsPresent(address)) {
         // No need to check the state
         cost_ += LOCAL_L1_FETCH;
+        bool is_exclusive = true;
+
+        for(int64_t i = 0; i < num_processors_; i++) {
+            if(i != processor_id && caches_[i].IsPresent(address)) {
+                is_exclusive = false;
+                break;
+            }
+        }
+        if(is_exclusive) {
+            caches_[processor_id].Update(address, false, true, false, true, true);
+        }
         return;
     }
 
@@ -21,7 +32,7 @@ void MESIFCoherence::Load(int64_t address, int64_t processor_id) {
                 caches_[i].Invalidate(address);
 
                 //we need to invalidate in L2 to maintain inclusion
-                caches_[num_processors_].Invalidate(address);
+                L2_cache_[0].Invalidate(address);
             }
             else if(caches_[i].IsExclusive(address)) {
                 //E->S
@@ -47,13 +58,13 @@ void MESIFCoherence::Load(int64_t address, int64_t processor_id) {
 
 
     // Check for presence in L2 cache
-    if(caches_[num_processors_].IsPresent(address)) {
+    if(L2_cache_[0].IsPresent(address)) {
         caches_[processor_id].Load(address);
         cost_+= L2_FETCH;
     }
     else{
         // Load from DRAM
-        caches_[num_processors_].Load(address);
+        L2_cache_[0].Load(address);
         caches_[processor_id].Load(address);
         cost_ += DRAM_FETCH;
     }
@@ -61,24 +72,31 @@ void MESIFCoherence::Load(int64_t address, int64_t processor_id) {
     
 }
 
-void MESIFCoherence::Store(int64_t address, int64_t processor_id) {
+void MESIFCoherence::Store(int64_t processor_id, int64_t address) {
     bool invalidata_other_L1 = false;
+    bool invalidate_other_L2 = false;
 
     // Check for presence in the local cache
     for (int64_t i = 0; i < num_processors_; ++i) {
         if (i != processor_id && caches_[i].IsPresent(address)) {
-            caches_[i].Invalidate(address); // Invalidate in L1
             invalidata_other_L1 = true;
+            invalidate_other_L2 |= caches_[i].IsModified(address);
+            caches_[i].Invalidate(address); // Invalidate in L1 
         }
     }
 
-    if (invalidata_other_L1) {
-        caches_[num_processors_].Invalidate(address); // Invalidate in L2 to maintain inclusiveness
+    if (invalidata_other_L1 && invalidate_other_L2) {
+        L2_cache_[0].Invalidate(address); // Invalidate in L2 to maintain inclusiveness
+    }
+
+    if(caches_[processor_id].IsPresent(address)) {
+        cost_ += LOCAL_L1_FETCH;
+        return;
     }
 
     caches_[processor_id].Store(address);
     // Update in L2 to maintain inclusiveness
-    caches_[num_processors_].Store(address); 
+    L2_cache_[0].Store(address); 
     cost_ += LOCAL_L1_FETCH;
 
 }

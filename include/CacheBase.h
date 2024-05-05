@@ -11,7 +11,7 @@ public:
 
     virtual bool IsPresent(int64_t source) = 0;
 
-    virtual bool Invalidate(int64_t address) = 0;
+    virtual void Invalidate(int64_t address) = 0;
 
 };
 
