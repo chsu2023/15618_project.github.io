@@ -73,7 +73,8 @@ Railing provided.
 ![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/4734569c-c494-4220-a196-c714230fe482)
 ![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/cf9ad7a2-3926-4d40-bd24-25daa511c5f2)
 ![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/7c52a400-7c5d-4174-b3a5-a7f669385fcf)
-![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/7819b162-e266-4e61-9917-1fddb2128680)
+![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/afc0c222-c04c-412f-abae-789ff32ad5a4)
+
 
 
 
