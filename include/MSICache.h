@@ -19,8 +19,8 @@ public:
 
 class MSICache : CacheBase {
 public:
-    explicit MSICache(int num_lines, uint64_t E, uint64_t s, uint64_t b): 
-    num_lines_(num_lines), s_(s),  b_(b),  E_(E) {
+    MSICache(int num_lines, uint64_t E, uint64_t s, uint64_t b): 
+    s_(s),  b_(b),  E_(E) {
         cache_.resize(num_lines);
         for(uint64_t i = 0; i < num_lines; i++) {
             cache_[i] = std::vector<MSICacheLine>(E);
@@ -44,9 +44,10 @@ public:
 
     void Store(uint64_t address);
 
+    virtual ~MSICache() {}
+
 private:
     std::vector<std::vector<MSICacheLine>> cache_;
-    int num_lines_;
     int s_;
     int b_;
     int E_;

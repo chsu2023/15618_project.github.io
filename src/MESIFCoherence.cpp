@@ -24,8 +24,7 @@ void MESIFCoherence::Load(uint64_t processor_id, uint64_t address) {
 
     
     // Check for presence in other L1 caches
-    bool found_in_other_L1 = false;
-    bool shared = false;    
+    bool found_in_other_L1 = false;    
     for(uint64_t i = 0; i < num_processors_; i++) {
         if(i != processor_id && caches_[i].IsPresent(address)) {
             found_in_other_L1 = true;
@@ -39,11 +38,9 @@ void MESIFCoherence::Load(uint64_t processor_id, uint64_t address) {
             else if(caches_[i].IsExclusive(address)) {
                 //E->S
                 caches_[i].Update(address, false, false, true, true, false);
-                shared = true;
             }
             else if(caches_[i].IsForward(address)) {
-                //TODO: Implement the forward state transitionS
-                shared = true;
+                // Can be left as such because we incur only only one sided cost
             }
             break;
         }

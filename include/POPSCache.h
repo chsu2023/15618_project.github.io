@@ -45,6 +45,8 @@ public:
     void Store(uint64_t address);
 
     bool IsExclusive(uint64_t address);
+
+    virtual ~POPSCache() {}
 private:
     std::vector<std::vector<POPSCacheLine>> cache_;
     int num_lines_;

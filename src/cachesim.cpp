@@ -36,8 +36,8 @@ int main(int argc, char * argv[]) {
     uint64_t address;
 
     //MSICoherence controller(4, 256, 4, 1, 6, 6);
-    //MESIFCoherence controller(4, 256, 4, 1, 6, 6);
-    POPSCoherence controller(4, 256, 4, 1, 6, 6);
+    MESIFCoherence controller(4, 256, 4, 1, 6, 6);
+    //POPSCoherence controller(4, 256, 4, 1, 6, 6);
 
     while(exec.Next(processor_id, action, address)) {
         if(action == 'L') {
