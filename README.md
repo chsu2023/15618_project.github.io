@@ -64,4 +64,10 @@ Railing provided.
 | Week 4 | Perform analysis and gather data for both our optimized design and base design |
 | Week 5 | Work on the report and potentially scale our design from the simulator the professor provided to gem5 |
 
+##Final Report
+![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/f20212e6-d755-4170-ba97-88a3d3e03d4e)
+![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/d1253cee-0179-4ec8-9db7-c9d3d5181f27)
+
+
+
 
