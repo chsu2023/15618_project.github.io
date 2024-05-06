@@ -64,9 +64,19 @@ Railing provided.
 | Week 4 | Perform analysis and gather data for both our optimized design and base design |
 | Week 5 | Work on the report and potentially scale our design from the simulator the professor provided to gem5 |
 
-##Final Report
+## Final Report
 ![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/f20212e6-d755-4170-ba97-88a3d3e03d4e)
 ![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/d1253cee-0179-4ec8-9db7-c9d3d5181f27)
+![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/4f8030bf-b78e-404e-8b21-4ff4bfc6bf05)
+![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/40be3b6b-2a09-44a6-bea7-bd0272945585)
+![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/fd476a2d-5e24-4926-aa45-9fb04fdbcc53)
+![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/4734569c-c494-4220-a196-c714230fe482)
+![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/cf9ad7a2-3926-4d40-bd24-25daa511c5f2)
+![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/7c52a400-7c5d-4174-b3a5-a7f669385fcf)
+![image](https://github.com/chsu2023/15618_project.github.io/assets/70235411/7819b162-e266-4e61-9917-1fddb2128680)
+
+
+
 
 
 
